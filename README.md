@@ -35,14 +35,17 @@ x
 y
 z
 
-## Demo
-
-## Requirement
-
 ## Usage
+install - install mytail command to `$GOPATH/bin`
+```
+go install
+```
+run
+```$xslt
+mytail sample.txt
+```
 
-## Install
-
-## Contribution
-
-## Licence
+add flag
+```$xslt
+mytail -n=3 sample.txt
+```
