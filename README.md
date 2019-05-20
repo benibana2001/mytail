@@ -37,8 +37,6 @@ z
 
 ## Demo
 
-## VS. 
-
 ## Requirement
 
 ## Usage
