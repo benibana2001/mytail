@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/benibana2001/mytail/tail"
 	"github.com/urfave/cli"
-	"io/ioutil"
 	"log"
 	"os"
-	"regexp"
 )
 
 func main() {
@@ -27,7 +26,7 @@ func main() {
 		if c.NArg() > 0 {
 			filename = c.Args().Get(0)
 		}else{
-			fmt.Println("Error : please set file name")
+			fmt.Println("Oops! please set file name")
 			os.Exit(1)
 		}
 		if c.Int("n") != 10 {
@@ -35,7 +34,7 @@ func main() {
 		}
 
 		// 実行
-		tail(N, filename)
+		tail.Tail(N, filename)
 		return nil
 	}
 
@@ -45,31 +44,4 @@ func main() {
 	}
 }
 
-func tail(n int, filename string) {
-	// []byteとしてファイルを読み込む
-	content, err := ioutil.ReadFile(filename)
-	if err != nil {
-		fmt.Println("Error : ", err)
-		os.Exit(2)
-	}
 
-	// 配列に変換
-	r := regexp.MustCompile("(\r\n|\n\r|\n|\r)")
-	s := r.Split(string(content), -1)
-
-	// 配列を逆順に並び替える
-	var ss []string
-	for i := range s {
-		ss = append(ss, s[len(s)-1-i])
-	}
-	// 書き出す
-	count := n
-	if n > len(ss) {
-		count = len(ss)
-	}
-
-	var i int
-	for i = count - 1; i >= 0; i-- {
-		fmt.Println(ss[i])
-	}
-}
