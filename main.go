@@ -34,7 +34,10 @@ func main() {
 		}
 
 		// 実行
-		tail.Tail(N, filename)
+		bs := tail.Tail(N, filename)
+		for _, v := range bs{
+			fmt.Println(v)
+		}
 		return nil
 	}
 

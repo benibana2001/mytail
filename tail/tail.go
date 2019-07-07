@@ -7,8 +7,7 @@ import (
 	"regexp"
 )
 
-func Tail(n int, filename string) {
-
+func Tail(n int, filename string) []string{
 
 	// []byteとしてファイルを読み込む
 	content, err := ioutil.ReadFile(filename)
@@ -23,22 +22,20 @@ func Tail(n int, filename string) {
 	r := regexp.MustCompile("(\r\n|\n\r|\n|\r)")
 	s := r.Split(string(content), -1)
 
-	// 配列を逆順に並び替える
-	var ss []string
-	for i := range s {
-		ss = append(ss, s[len(s)-1-i])
-	}
-	// 書き出す
-	count := n
-	if n > len(ss) {
-		count = len(ss)
+	// 最終行が空行の場合は削除
+	if s[len(s)-1] == "" {
+		s = s[:len(s)-1]
 	}
 
+	if n > len(s) {
+		n = len(s)
+	}
+	var bs []string
 	var i int
-	for i = count - 1; i >= 0; i-- {
-		fmt.Println(ss[i])
+	for i = len(s)-n; i<len(s); i++ {
+		bs = append(bs, s[i])
 	}
-
+	return bs
 
 	/*
 	////
