@@ -17,7 +17,8 @@ i write requirements of this exam to Description-area.
 
 ## Usage
 1.Please clone this repository:  
-このリポジトリをクローンしてください。:
+このリポジトリをクローンしてください。:  
+(課題内容の漏洩防止のため、private リポジトリで作成しています。)  
 ```
 git clone https://github.com/benibana2001/mytail.git
 ```
