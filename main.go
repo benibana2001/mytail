@@ -11,14 +11,14 @@ import (
 func main() {
 	app := cli.NewApp()
 
-	app.Flags = []cli.Flag {
+	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name: "n",
+			Name:  "n",
 			Value: "10",
 			Usage: "length of tail command",
 		},
 		cli.StringFlag{
-			Name: "o",
+			Name:  "o",
 			Value: "",
 			Usage: "output for file",
 		},
@@ -32,7 +32,7 @@ func main() {
 		var filename string
 		if c.NArg() > 0 {
 			filename = c.Args().Get(0)
-		}else{
+		} else {
 			fmt.Println("Oops! please set file name")
 			os.Exit(1)
 		}
@@ -57,5 +57,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
-

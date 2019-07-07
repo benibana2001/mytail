@@ -7,12 +7,13 @@ import (
 	"os"
 	"regexp"
 )
+
 type Mytail struct {
-	Data []string
+	Data     []string
 	FileName string
 }
 
-func Create(n int, filename string) *Mytail{
+func Create(n int, filename string) *Mytail {
 	m := Mytail{}
 	// []byteとしてファイルを読み込む
 	content, err := ioutil.ReadFile(filename)
@@ -38,29 +39,29 @@ func Create(n int, filename string) *Mytail{
 	}
 	var ss []string
 	var i int
-	for i = len(s)-n; i<len(s); i++ {
+	for i = len(s) - n; i < len(s); i++ {
 		ss = append(ss, s[i])
 	}
 	m.Data = ss
 	return &m
 
 	/*
-	////
-	// Stream で作成
-	file, err := os.Open("sample.txt")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	reader := bufio.NewReader(file)
-
-	for {
-		line, err := reader.ReadString('\n')
-		fmt.Printf("%v", line)
-		if err == io.EOF {
-			break
+		////
+		// Stream で作成
+		file, err := os.Open("sample.txt")
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
 		}
-	}
+		reader := bufio.NewReader(file)
+
+		for {
+			line, err := reader.ReadString('\n')
+			fmt.Printf("%v", line)
+			if err == io.EOF {
+				break
+			}
+		}
 	*/
 }
 
@@ -73,12 +74,12 @@ func (m Mytail) SaveFile(filename string) {
 }
 
 func (m Mytail) Print() {
-	for _, v := range m.Data{
+	for _, v := range m.Data {
 		fmt.Println(v)
 	}
 }
 
-func ss2bs(ss []string) []byte{
+func ss2bs(ss []string) []byte {
 	var s string
 	for _, v := range ss {
 		s = s + v + "\n"
