@@ -17,11 +17,18 @@ func main() {
 			Value: "10",
 			Usage: "length of tail command",
 		},
+		cli.StringFlag{
+			Name: "o",
+			Value: "",
+			Usage: "output for file",
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
 		// 初期値の設定
 		N := 10
+		OutputFilename := ""
+
 		var filename string
 		if c.NArg() > 0 {
 			filename = c.Args().Get(0)
@@ -32,13 +39,16 @@ func main() {
 		if c.Int("n") != 10 {
 			N = c.Int("n")
 		}
+		if c.String("o") != "" {
+			OutputFilename = c.String("o")
+		}
 
 		// 実行
-		bs := tail.Tail(N, filename)
-		for _, v := range bs{
-			fmt.Println(v)
+		mytail := tail.Create(N, filename)
+		mytail.Print()
+		if OutputFilename != "" {
+			mytail.SaveFile(OutputFilename)
 		}
-		tail.SaveFile(bs, "new.txt")
 		return nil
 	}
 
