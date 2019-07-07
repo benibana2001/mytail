@@ -3,3 +3,6 @@ run:
 
 test:
 	go test ./tail
+
+fmt:
+	go fmt main.go ./tail.go

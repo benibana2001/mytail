@@ -38,6 +38,7 @@ func main() {
 		for _, v := range bs{
 			fmt.Println(v)
 		}
+		tail.SaveFile(bs, "new.txt")
 		return nil
 	}
 
