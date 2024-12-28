@@ -4,26 +4,16 @@ mytail
 mytail - cli tool which resemble `tail` command.  
 This package use [urfave/cli](https://github.com/urfave/cli)
 for creating CLT tool.  
-If you are not familiar with this, please refer to the repository.  
-mytail - これは `tail` コマンドに似た CLIツールです。  
-CLIツール化のために [urfave/cli](https://github.com/urfave/cli) を使用しています。  
-もしこちらに詳しくないようでしたら、恐縮ですがリポジトリをご参照ください。  
 
 ## Overview
-i made this cli tool for tha exam of `Gopher道場 - 課題2`.
-i write requirements of this exam to Description-area.  
-この CLIツールは、`Gopher道場 - 課題2` として作成しました。  
-課題の詳細については Description に記します。  
+i made this cli tool for my practice.
 
 ## Usage
 1.Please clone this repository:  
-このリポジトリをクローンしてください。:  
-(課題内容の漏洩防止のため、private リポジトリで作成しています。)  
 ```
 git clone https://github.com/benibana2001/mytail.git
 ```
-2.Please install this package to type `go install` :  
-`go install` を実行して、このパッケージをインストールしてください。:  
+2.Please install this package to type `go install` :    
 ```
 cd $GOPATH/src/github.com/benibana2001/mytail
 go install
@@ -38,8 +28,6 @@ mytail sample.txt
 ##### -n: 
 You can display only N lines.
 If you don't set, display default lines (N = 10).  
--n オプションを指定することで、N行だけ表示することができます。  
-もしオプションを設定しない場合、デフォルトとして10行を表示します。
 ```
 mytail -n 3 sample.txt
  or
@@ -48,62 +36,13 @@ mytail -n=3 sample.txt
 
 ##### -o:
 You can save output as a file.  
-結果をファイルとして保存します。
 ```
 mytail -o new.txt sample.txt
  or
 mytail -o=new.txt sample.txt
 ```
 
-## Description
-quote requirements.  
-課題内容を引用します。  
-
->課題2
-次の仕様を満たすtailコマンドに似たコマンドをGoで作成してください。
-● 引数で渡された1つのファイルの末尾の最大N行をそのまま出力
-● Nはデフォルトで10
-● オプション-nでNを指定できる
-実行例
-$ mytail -n=3 hoge.txt
-X
-Y
-Z
-追加機能
-必須ではありませんが、余力があれば上記の機能に加えて、追加機能を実装してください。
-追加機能の仕様は特に制限はなく、本家のtailコマンドにないものでも構いません。
-追加機能とは、例えば次のように複数のファイルを取れるようにするというようなもので
-す。
-$ mytail -n=3 hoge.txt fuga.txt
-==> hoge.txt <==
-X
-Y
-Z
-==> fuga.txt <==
-x
-y
-z
-
-#### メモ  
-##### Gopher道場に応募した理由とGopher道場で学びたいことについて　　
-Goのスキルアップ、およびGoを通して低レイヤーの知識、マイクロサービスの知見を高めたいと思っています。
-志望した理由ですが、以下の理由から個人での学習に不安を感じているためです。
-・これまでスクリプト言語しかまともに触ったことがない(JS, PHP)
-・CSの基礎知識があまり豊富でない(OSの仕組みについて基礎から学習中です)
-・周囲にGoの経験者がいない
-Gopher道場にて現場のノウハウを吸収できたらいいなと思っています。
-
-##### 課題2の解く上で工夫した点や難しいと感じた点について
-どの程度のレベルが求められているのかわからず不安でしたが、
-機能追加やテストが容易にできるように意識しました。
-具体的には、メインとなる構造体を容易し、そこにレシーバーで関数を付与していく形をとりました。
-（当然のやり方とは思いますが...）
-またzip形式で課題を提出するという経験が初めてであったため、
-確認作業を行われる方が楽になればと思い、README.md については分かりやすさを意識して書かせていただきました。
-
-難しいと感じた点は、ストリームの部分です。
-はじめはメモリの節約のためにストリームのままio.Writerに持って行こうと考えました。
-そのため `bufio.NewReader` を使用して改行区切りで１行づつ読み込む形でコードを書き始めました。 
-しかし上手く形にできず...。
-結局 `ioutil.ReadFile` で全て読み込みstringに変換した後に、改行で区切ってスライスに入れる形としました。
-Goを使っていく上ではこの辺りの知識は必要不可欠かと思いますので、改善していきたいと思っています。
+#### 改善点  
+メインとなる構造体を容易し、そこにレシーバーで関数を付与していく形をとっている。
+当初はメモリの節約のためにストリームのままio.Writerに持って行こうと考えたが、実力不足により実装できなかった。
+妥協して、 `ioutil.ReadFile` で全て読み込みstringに変換した後に、改行で区切ってスライスに入れる形としている。
